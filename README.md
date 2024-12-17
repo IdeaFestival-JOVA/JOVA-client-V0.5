@@ -9,3 +9,5 @@ React.js + TypeScript + Vite
 1. react-router-dom
 2. styled-components
 3. react-helmet
+4. react-markdown
+5. rehype-raw
