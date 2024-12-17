@@ -15,6 +15,11 @@ const GlobalStyle = createGlobalStyle`
         font-size: 16px;
         color: #333;
     }
+    
+    h1, h2, h3, h4, h5, h6, p, a {
+        margin:0;
+        padding:0;
+    }
 `;
 
 export default GlobalStyle;

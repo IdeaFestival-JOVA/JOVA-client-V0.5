@@ -7,6 +7,7 @@ type NotionProps = {
   User: string;
   Title: string;
   Time: string;
+  Contents: string;
 };
 
 const Table = styled.div`
@@ -34,23 +35,25 @@ const TableCell = styled.div<{ flex?: number }>`
   text-overflow: ellipsis;
 `;
 
-function MiniNotion({ Num, User, Title, Time }: NotionProps) {
+function MiniNotion({ Num, User, Title, Time, Contents }: NotionProps) {
   const [number, setNumber] = useState(0);
   const [userName, setUserName] = useState("JOVA");
-  const [contents, setContents] = useState("내용");
+  const [title, setTitle] = useState("내용");
   const [date, setDate] = useState("20xx.xx.xx");
+  const [content, setContent] = useState("# 오류");
 
   const go = useNavigate();
 
   useEffect(() => {
     setNumber(Num);
     setUserName(User);
-    setContents(Title);
+    setTitle(Title);
     setDate(Time);
-  }, [Num, User, Title, Time]);
+    setContent(Contents);
+  }, [Num, User, Title, Time, Contents]);
 
   const handleClick = () => {
-    go("/notion/detail", { state: { number, userName, contents, date } });
+    go("/notion/detail", { state: { userName, title, date, content } });
   };
 
   return (
@@ -58,7 +61,7 @@ function MiniNotion({ Num, User, Title, Time }: NotionProps) {
       <TableRow onClick={handleClick}>
         <TableCell flex={0.5}>{number}</TableCell>
         <TableCell flex={1}>{userName}</TableCell>
-        <TableCell flex={2}>{contents}</TableCell>
+        <TableCell flex={2}>{title}</TableCell>
         <TableCell flex={1}>{date}</TableCell>
       </TableRow>
     </Table>

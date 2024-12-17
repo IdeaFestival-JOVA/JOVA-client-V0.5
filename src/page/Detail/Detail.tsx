@@ -1,19 +1,24 @@
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import InfoBox from "./infoBox";
+import Header from "../../components/Header";
 
 function Detail() {
   const location = useLocation();
-  const { number, userName, contents, date } = location.state || {}; // 전달된 데이터 수신
+  const { userName, title, date, content } = location.state || {}; // 전달된 데이터 수신
 
   return (
     <div>
       <Helmet>
-        <title>JOVA | {contents}</title>
+        <title>JOVA | {title}</title>
       </Helmet>
-      <h1>{number}</h1>
-      <p>{userName || "No data available"}</p>{" "}
-      <p>{contents || "No data available"}</p>{" "}
-      <p>{date || "No data available"}</p>{" "}
+      <Header />
+      <InfoBox
+        Name={userName}
+        Title={title}
+        TimeDate={date}
+        Contents={content}
+      />
     </div>
   );
 }
