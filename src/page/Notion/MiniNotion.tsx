@@ -50,7 +50,7 @@ function MiniNotion({ Num, User, Title, Time }: NotionProps) {
   }, [Num, User, Title, Time]);
 
   const handleClick = () => {
-    go("/detail", { state: { contents } });
+    go("/notion/detail", { state: { number, userName, contents, date } });
   };
 
   return (

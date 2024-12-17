@@ -1,6 +1,5 @@
 // NotionBody.tsx
 import styled from "styled-components";
-import { useState } from "react";
 import MiniNotion from "./MiniNotion";
 
 const Text = styled.h1`
@@ -61,13 +60,13 @@ type NotionProps = {
 };
 
 function NotionBody() {
-  const [count, setCount] = useState<number>(0);
+  const count = 0;
 
   const TempArray: NotionProps[] = [
     {
       Num: 1,
       User: "1412 이상혁",
-      Title: "asdklgnwoienavl'efjwailns",
+      Title: "메이플 진힐라 팟 급구@@@@ 260, 전투력 1억이상",
       Time: "2024.12.16",
     },
     {
@@ -92,7 +91,12 @@ function NotionBody() {
       Time: "2077.27.01",
     },
     { Num: 7, User: "이주언", Title: "섹스하고 싶다", Time: "202.27.01" },
-    { Num: 8, User: "이상혁", Title: "도토리구함@@", Time: "2024.12.16" },
+    {
+      Num: 8,
+      User: "박현민",
+      Title: "여자친구 사귄 날짜: 2026. 2.30ㅋ",
+      Time: "2024.12.16",
+    },
     {
       Num: 9,
       User: "박승일",
