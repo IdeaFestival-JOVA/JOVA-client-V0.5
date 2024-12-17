@@ -225,13 +225,10 @@ function NotionBody() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const displayedData = TempArray.slice(startIndex, startIndex + itemsPerPage);
 
-  const [skipIndex, setSkipIndex] = useState<number>(0);
-
   const totalPages = Math.ceil(TempArray.length / itemsPerPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    console.log(currentPage);
   };
 
   return (
@@ -258,27 +255,25 @@ function NotionBody() {
       </MiniNotionWrapper>
       <PaginationWrapper>
         {Array.from({ length: totalPages }, (_, index) => {
+          const pageNumber = index + 1;
           if (
-            currentPage - 1 === index ||
-            currentPage - 2 === index ||
-            currentPage === index
+            pageNumber === 1 ||
+            pageNumber === totalPages ||
+            Math.abs(pageNumber - currentPage) <= 1
           ) {
             return (
               <PageButton
-                key={index}
-                active={currentPage === index + 1}
-                onClick={() => handlePageChange(index + 1)}
+                key={pageNumber}
+                active={currentPage === pageNumber}
+                onClick={() => handlePageChange(pageNumber)}
               >
-                {index + 1}
+                {pageNumber}
               </PageButton>
             );
-          } else {
-            if (skipIndex === 1) {
-              return;
-            }
-            setSkipIndex(1);
-            return <p>...</p>;
+          } else if (pageNumber === 2 || pageNumber === totalPages - 1) {
+            return <p key={pageNumber}>...</p>;
           }
+          return null;
         })}
       </PaginationWrapper>
     </Wrapper>
