@@ -14,7 +14,6 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Pretendard-Regular', sans-serif; /* 기본 폰트 설정 */
         font-size: 16px;
         color: #333;
-        background-color: #f9f9f9; /* 배경색은 필요에 따라 수정 */
     }
 `;
 
