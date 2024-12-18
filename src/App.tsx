@@ -5,6 +5,7 @@ import Profil from "./page/Profil/profil";
 import JobPage from "./page/JobPage/JobPage";
 import Detail from "./page/Detail/Detail";
 import GlobalStyle from "./fonts/GlobalStyle";
+import Notification from "./page/notification/Notification";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/notion" element={<Notion />} />
         <Route path="/profil" element={<Profil />} />
         <Route path="/notion/detail" element={<Detail />} />
+        <Route path="/notification" element={<Notification />} />
       </Routes>
     </>
   );

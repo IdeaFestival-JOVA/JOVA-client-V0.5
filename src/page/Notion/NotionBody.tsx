@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import MiniNotion from "./MiniNotion";
+import { Link } from "react-router-dom";
 
 const Text = styled.h1`
   font-family: "Pretendard-Regular", sans-serif;
@@ -70,6 +71,13 @@ const PageButton = styled.button<{ active: boolean }>`
     background-color: #007bff;
     color: #fff;
   }
+`;
+
+const NotificationButton = styled(Link)`
+  width:150px;
+  height:54px;
+  border: 1px solid #B0B0B0
+  border-radius:15px;
 `;
 
 type NotionProps = {
@@ -383,6 +391,7 @@ function NotionBody() {
         <TextP marginLeft={353}>제목</TextP>
         <TextP marginLeft={346}>등록일</TextP>
       </ListWrapper>
+      <NotificationButton to="/notification">글쓰기</NotificationButton>
       <MiniNotionWrapper>
         {displayedData.map((notion, index) => (
           <MiniNotion
