@@ -73,11 +73,19 @@ const PageButton = styled.button<{ active: boolean }>`
   }
 `;
 
+const NotificationButtonBox = styled.div`
+  width: 150px;
+  height: 54px;
+  border: 1px solid #b0b0b0;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const NotificationButton = styled(Link)`
-  width:150px;
-  height:54px;
-  border: 1px solid #B0B0B0
-  border-radius:15px;
+  text-decoration-line: none;
+  color: black;
 `;
 
 type NotionProps = {
@@ -391,7 +399,6 @@ function NotionBody() {
         <TextP marginLeft={353}>제목</TextP>
         <TextP marginLeft={346}>등록일</TextP>
       </ListWrapper>
-      <NotificationButton to="/notification">글쓰기</NotificationButton>
       <MiniNotionWrapper>
         {displayedData.map((notion, index) => (
           <MiniNotion
@@ -427,6 +434,9 @@ function NotionBody() {
           return null;
         })}
       </PaginationWrapper>
+      <NotificationButton to="/notification">
+        <NotificationButtonBox>공지 작성하기</NotificationButtonBox>
+      </NotificationButton>
     </Wrapper>
   );
 }
