@@ -57,16 +57,23 @@ function NotificationBody() {
   const [contents, setContents] = useState<string>(
     "# 마크다운 ```문법```을 사용해 작성해 주세요"
   );
+  const [images, setImages] = useState<{ id: string; base64: string }[]>([]);
 
   const handleFileUpload = (file: File) => {
     const reader = new FileReader();
     reader.onload = () => {
-      const base64Image = reader.result as string;
-      const imageId = `image-${Date.now()}`;
-      const markdownImageTag = `![Image ${imageId}](${base64Image})`;
-      setContents((prev) => `${prev}\n\n${markdownImageTag}`);
+      const base64Image = reader.result as string; // base64로 변환된 이미지
+      const imageId = `image-${Date.now()}`; // 고유 ID 생성
+      const markdownImageTag = `![Image ${imageId}]`; // 마크다운 이미지 태그 생성
+      const htmlComment = `<!-- ${markdownImageTag} -->`; // HTML 주석으로 감싼 마크다운 태그
+
+      // 이미지를 상태에 추가
+      setImages((prev) => [...prev, { id: imageId, base64: base64Image }]);
+
+      // HTML 주석을 포함한 마크다운 문법을 contents에 추가
+      setContents((prev) => `${prev}\n\n${htmlComment}`);
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file); // 파일을 base64로 읽기
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
@@ -86,9 +93,11 @@ function NotificationBody() {
     e.preventDefault();
   };
 
-  // 이미지 태그 제거 시 처리 (생략 가능, Markdown 자체로만 관리)
   useEffect(() => {
-    // 향후 필요하면 삭제 처리 가능
+    const updatedImages = images.filter((image) =>
+      contents.includes(`![Image ${image.id}]`)
+    );
+    setImages(updatedImages);
   }, [contents]);
 
   return (
@@ -105,6 +114,14 @@ function NotificationBody() {
           이미지를 드래그 앤 드롭하거나 클릭하여 업로드하세요.
         </DragAndDropArea>
         <Markdown rehypePlugins={[rehypeRaw]}>{contents}</Markdown>
+        {images.map((image) => (
+          <img
+            key={image.id}
+            src={image.base64}
+            alt="Uploaded"
+            style={{ maxWidth: "100%", height: "auto", marginTop: "20px" }}
+          />
+        ))}
       </BodyWrapper>
     </WrapperBox>
   );
