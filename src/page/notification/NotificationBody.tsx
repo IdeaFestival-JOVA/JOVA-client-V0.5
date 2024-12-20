@@ -44,7 +44,7 @@ const TextArea = styled.textarea`
 `;
 
 const DragAndDropArea = styled.div`
-  border: 2px dashed #dfdfdf;
+  border: 1px dashed #dfdfdf;
   border-radius: 5px;
   padding: 20px;
   margin-top: 20px;
@@ -53,29 +53,62 @@ const DragAndDropArea = styled.div`
   background-color: #fafafa;
 `;
 
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+`;
+
 function NotificationBody() {
   const [contents, setContents] = useState<string>(
     "# 마크다운 ```문법```을 사용해 작성해 주세요"
   );
   const [images, setImages] = useState<{ id: string; base64: string }[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // 이미지 업로드 처리
   const handleFileUpload = (file: File) => {
     const reader = new FileReader();
     reader.onload = () => {
-      const base64Image = reader.result as string; // base64로 변환된 이미지
-      const imageId = `image-${Date.now()}`; // 고유 ID 생성
-      const markdownImageTag = `![Image ${imageId}]`; // 마크다운 이미지 태그 생성
-      const htmlComment = `<!-- ${markdownImageTag} -->`; // HTML 주석으로 감싼 마크다운 태그
+      const base64Image = reader.result as string;
+      const imageId = `image-${Date.now()}`;
+      const markdownImageTag = `![Image ${imageId}]`;
+      const htmlComment = `<!-- ${markdownImageTag} -->`;
 
-      // 이미지를 상태에 추가
       setImages((prev) => [...prev, { id: imageId, base64: base64Image }]);
-
-      // HTML 주석을 포함한 마크다운 문법을 contents에 추가
       setContents((prev) => `${prev}\n\n${htmlComment}`);
     };
-    reader.readAsDataURL(file); // 파일을 base64로 읽기
+    reader.readAsDataURL(file);
   };
 
+  // 드래그 앤 드롭 처리
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const files = e.dataTransfer.files;
@@ -113,7 +146,6 @@ function NotificationBody() {
         <DragAndDropArea onDrop={handleDrop} onDragOver={handleDragOver}>
           이미지를 드래그 앤 드롭하거나 클릭하여 업로드하세요.
         </DragAndDropArea>
-        <Markdown rehypePlugins={[rehypeRaw]}>{contents}</Markdown>
         {images.map((image) => (
           <img
             key={image.id}
@@ -122,7 +154,25 @@ function NotificationBody() {
             style={{ maxWidth: "100%", height: "auto", marginTop: "20px" }}
           />
         ))}
+        <button onClick={() => setIsModalOpen(true)}>미리보기</button>
       </BodyWrapper>
+
+      {isModalOpen && (
+        <ModalOverlay>
+          <ModalContent>
+            <CloseButton onClick={() => setIsModalOpen(false)}>×</CloseButton>
+            <Markdown rehypePlugins={[rehypeRaw]}>{contents}</Markdown>
+            {images.map((image) => (
+              <img
+                key={image.id}
+                src={image.base64}
+                alt="Uploaded"
+                style={{ maxWidth: "100%", height: "auto", marginTop: "20px" }}
+              />
+            ))}
+          </ModalContent>
+        </ModalOverlay>
+      )}
     </WrapperBox>
   );
 }
