@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import { Helmet } from "react-helmet";
 
 const WrapperBox = styled.div`
   width: 100vw;
@@ -88,13 +89,14 @@ const CloseButton = styled.button`
 `;
 
 function NotificationBody() {
+  const [title, setTitle] = useState<string>("");
+
   const [contents, setContents] = useState<string>(
     "# 마크다운 ```문법```을 사용해 작성해 주세요"
   );
   const [images, setImages] = useState<{ id: string; base64: string }[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // 이미지 업로드 처리
   const handleFileUpload = (file: File) => {
     const reader = new FileReader();
     reader.onload = () => {
@@ -127,6 +129,11 @@ function NotificationBody() {
     e.preventDefault();
   };
 
+  const goServer = () => {
+    console.log(title);
+    console.log(contents);
+  };
+
   useEffect(() => {
     const updatedImages = images.filter((image) =>
       contents.includes(`![Image ${image.id}]`)
@@ -135,38 +142,52 @@ function NotificationBody() {
   }, [contents]);
 
   return (
-    <WrapperBox>
-      <BodyWrapper>
-        <h1>공지 작성</h1>
-        <Input placeholder="제목을 입력해 주세요" />
-        <TextArea
-          placeholder="마크다운문법을 사용해 작성하세요"
-          value={contents}
-          onChange={(e) => setContents(e.target.value)}
-        />
-        <DragAndDropArea onDrop={handleDrop} onDragOver={handleDragOver}>
-          이미지를 드래그 앤 드롭하거나 클릭하여 업로드하세요.
-        </DragAndDropArea>
-        <button onClick={() => setIsModalOpen(true)}>미리보기</button>
-      </BodyWrapper>
+    <>
+      <Helmet>
+        <title>JOVA | 공지 작성</title>
+      </Helmet>
+      <WrapperBox>
+        <BodyWrapper>
+          <h1>공지 작성</h1>
+          <Input
+            placeholder="제목을 입력해 주세요"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <TextArea
+            placeholder="마크다운문법을 사용해 작성하세요"
+            value={contents}
+            onChange={(e) => setContents(e.target.value)}
+          />
+          <DragAndDropArea onDrop={handleDrop} onDragOver={handleDragOver}>
+            이미지를 드래그 앤 드롭하거나 클릭하여 업로드하세요.
+          </DragAndDropArea>
+          <button onClick={() => setIsModalOpen(true)}>미리보기</button>
+          <button onClick={goServer}>작성</button>
+        </BodyWrapper>
 
-      {isModalOpen && (
-        <ModalOverlay onClick={() => setIsModalOpen(false)}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <CloseButton onClick={() => setIsModalOpen(false)}>×</CloseButton>
-            <Markdown rehypePlugins={[rehypeRaw]}>{contents}</Markdown>
-            {images.map((image) => (
-              <img
-                key={image.id}
-                src={image.base64}
-                alt="Uploaded"
-                style={{ maxWidth: "100%", height: "auto", marginTop: "20px" }}
-              />
-            ))}
-          </ModalContent>
-        </ModalOverlay>
-      )}
-    </WrapperBox>
+        {isModalOpen && (
+          <ModalOverlay onClick={() => setIsModalOpen(false)}>
+            <ModalContent onClick={(e) => e.stopPropagation()}>
+              <CloseButton onClick={() => setIsModalOpen(false)}>×</CloseButton>
+              <Markdown rehypePlugins={[rehypeRaw]}>{contents}</Markdown>
+              {images.map((image) => (
+                <img
+                  key={image.id}
+                  src={image.base64}
+                  alt="Uploaded"
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                    marginTop: "20px",
+                  }}
+                />
+              ))}
+            </ModalContent>
+          </ModalOverlay>
+        )}
+      </WrapperBox>
+    </>
   );
 }
 
