@@ -46,7 +46,7 @@ const TextArea = styled.textarea`
 const DragAndDropArea = styled.div`
   border: 1px dashed #dfdfdf;
   border-radius: 5px;
-  padding: 20px;
+  padding: 20px 0 20px 0;
   margin-top: 20px;
   width: 1067px;
   text-align: center;
@@ -147,14 +147,6 @@ function NotificationBody() {
         <DragAndDropArea onDrop={handleDrop} onDragOver={handleDragOver}>
           이미지를 드래그 앤 드롭하거나 클릭하여 업로드하세요.
         </DragAndDropArea>
-        {images.map((image) => (
-          <img
-            key={image.id}
-            src={image.base64}
-            alt="Uploaded"
-            style={{ maxWidth: "100%", height: "auto", marginTop: "20px" }}
-          />
-        ))}
         <button onClick={() => setIsModalOpen(true)}>미리보기</button>
       </BodyWrapper>
 
