@@ -95,7 +95,7 @@ function NotificationBody() {
     "# 마크다운 ```문법```을 사용해 작성해 주세요"
   );
   const [images, setImages] = useState<{ id: string; base64: string }[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleFileUpload = (file: File) => {
     const reader = new FileReader();
@@ -175,7 +175,7 @@ function NotificationBody() {
                 <img
                   key={image.id}
                   src={image.base64}
-                  alt="Uploaded"
+                  alt={image.id}
                   style={{
                     maxWidth: "100%",
                     height: "auto",
