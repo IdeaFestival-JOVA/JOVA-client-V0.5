@@ -74,6 +74,7 @@ const ModalContent = styled.div`
   max-height: 80vh;
   overflow-y: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
 `;
 
 const CloseButton = styled.button`
@@ -158,8 +159,8 @@ function NotificationBody() {
       </BodyWrapper>
 
       {isModalOpen && (
-        <ModalOverlay>
-          <ModalContent>
+        <ModalOverlay onClick={() => setIsModalOpen(false)}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
             <CloseButton onClick={() => setIsModalOpen(false)}>×</CloseButton>
             <Markdown rehypePlugins={[rehypeRaw]}>{contents}</Markdown>
             {images.map((image) => (
