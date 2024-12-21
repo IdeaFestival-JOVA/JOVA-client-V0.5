@@ -37,11 +37,17 @@ const TextWrapper = styled.div`
   justify-content: space-between;
 `;
 
+const IconBox = styled(Link)`
+  margin-top: 15px;
+`;
+
 function Header() {
   return (
     <HeaderWrapper>
       <HeaderItemWrapper>
-        <MainIcon />
+        <IconBox to="/">
+          <MainIcon />
+        </IconBox>
         <TextWrapper>
           <Text to="/">홈</Text>
           <Text to="/jobpage">구인구직</Text>
