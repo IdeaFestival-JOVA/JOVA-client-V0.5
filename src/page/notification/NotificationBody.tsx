@@ -111,7 +111,6 @@ function NotificationBody() {
     reader.readAsDataURL(file);
   };
 
-  // 드래그 앤 드롭 처리
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const files = e.dataTransfer.files;

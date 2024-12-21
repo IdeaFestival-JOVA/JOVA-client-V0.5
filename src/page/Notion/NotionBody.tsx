@@ -79,6 +79,7 @@ const NotificationButtonBox = styled.div`
   border: 1px solid #b0b0b0;
   border-radius: 15px;
   display: flex;
+  margin-left: 950px;
   align-items: center;
   justify-content: center;
 `;
