@@ -48,7 +48,7 @@ function ProfilPicture() {
   const [userName, setUserName] = useState("이름");
   const [github, setGithub] = useState("https://github.com/LeeSangHyeok0731");
   const [mail, setMail] = useState("s20000@gsm.hs.kr");
-  const [number, setNumber] = useState("프론트엔드");
+  const [major, setmajor] = useState("프론트엔드");
 
   return (
     <>
@@ -70,7 +70,7 @@ function ProfilPicture() {
           </ImformationWrapper>
           <ImformationWrapper>
             <ProfilInformation>전공:</ProfilInformation>
-            <UserImformation>{number}</UserImformation>
+            <UserImformation>{major}</UserImformation>
           </ImformationWrapper>
         </ProfilInformationWrapper>
       </ProfilWrapper>
