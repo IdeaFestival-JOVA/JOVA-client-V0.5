@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import baseImage from "../../images/image/baseImage.png";
 import { useState } from "react";
+import PenIcon from "../../images/Pen";
+import { useNavigate } from "react-router-dom";
 
 const Text = styled.h1`
   font-family: "Pretendard-Regular", sans-serif;
@@ -44,11 +46,27 @@ const UserImformation = styled(Text)`
   font-weight: 100;
 `;
 
+const CorrectionButton = styled.div`
+  width: 135px;
+  height: 65px;
+  border: 1px solid #929292;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 function ProfilPicture() {
   const [userName, setUserName] = useState("이름");
   const [github, setGithub] = useState("https://github.com/LeeSangHyeok0731");
   const [mail, setMail] = useState("s20000@gsm.hs.kr");
   const [major, setmajor] = useState("프론트엔드");
+
+  const go = useNavigate();
+
+  const goPath = () => {
+    go("/profilcorrection");
+  };
 
   return (
     <>
@@ -74,6 +92,10 @@ function ProfilPicture() {
           </ImformationWrapper>
         </ProfilInformationWrapper>
       </ProfilWrapper>
+      <CorrectionButton onClick={goPath}>
+        <PenIcon />
+        수정하기
+      </CorrectionButton>
     </>
   );
 }
