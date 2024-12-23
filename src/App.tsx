@@ -8,6 +8,7 @@ import GlobalStyle from "./fonts/GlobalStyle";
 import Notification from "./page/Notion/notification/Notification";
 import JobNotion from "./page/JobPage/JobNotion/JobNotion";
 import ProfilCorrection from "./page/Profil/profilcorrection/ProfilCorrection";
+import Login from "./page/login/login";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/notification" element={<Notification />} />
         <Route path="/jobnotion" element={<JobNotion />} />
         <Route path="/profilcorrection" element={<ProfilCorrection />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );
