@@ -55,7 +55,9 @@ function Header() {
           <Text to="/profil">프로필</Text>
           <Text to="/">소개</Text>
         </TextWrapper>
-        <MyIcon />
+        <IconBox to="/login">
+          <MyIcon />
+        </IconBox>
       </HeaderItemWrapper>
     </HeaderWrapper>
   );
