@@ -1,5 +1,13 @@
+import Header from "../../../components/Header";
+import ProfilCorrectionBody from "./ProfilCorrectionBody";
+
 function ProfilCorrection() {
-  return <></>;
+  return (
+    <>
+      <Header />
+      <ProfilCorrectionBody />
+    </>
+  );
 }
 
 export default ProfilCorrection;
