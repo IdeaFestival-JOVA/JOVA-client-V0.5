@@ -21,7 +21,7 @@ const Login = () => {
       const postCode = async () => {
         try {
           const response = await fetch(
-            "https://daram-gsm.kro.kr/api/login/gauth/code",
+            "https://port-0-jova-backend-m0kvtwm45b2f2eb2.sel4.cloudtype.app/auth/login",
             {
               method: "POST",
               headers: {
