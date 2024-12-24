@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import MiniJob from "./MiniJob";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const Text = styled.h1`
   font-family: "Pretendard-Regular", sans-serif;
@@ -100,7 +101,45 @@ function JobBody() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const TempArray: NotionProps[] = [
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const [TempArray, setTempArray] = useState<NotionProps>();
+
+  const Api = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(
+        "https://port-0-jova-backend-m0kvtwm45b2f2eb2.sel4.cloudtype.app/articles/list",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer your_access_token",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("응답 오류");
+      }
+
+      const responseData = await response.json(); // JSON 응답 데이터 파싱
+      setTempArray(responseData); // 성공 시 응답 데이터 저장
+    } catch (error: any) {
+      setError("요청 실패!"); // 에러 처리
+    } finally {
+      setLoading(false); // 로딩 종료
+    }
+  };
+
+  useEffect(() => {
+    Api();
+  }, []);
+
+  /*const TempArray: NotionProps[] = [
     {
       User: "1412 이상혁",
       Title:
@@ -378,7 +417,7 @@ function JobBody() {
       Time: "adfwaoirhvbn",
       Contents: "### 메타데이터\n**임의로 설정한 메타데이터**입니다.",
     },
-  ];
+  ];*/
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const displayedData = TempArray.slice(startIndex, startIndex + itemsPerPage);
@@ -392,6 +431,8 @@ function JobBody() {
   return (
     <Wrapper>
       <Text>구인구직</Text>
+      {loading && <p>로딩 중...</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <DividSpace />
       <TextP marginLeft={0}>전체 {TempArray.length}건</TextP>
       <ListWrapper>
@@ -401,7 +442,7 @@ function JobBody() {
         <TextP marginLeft={346}>등록일</TextP>
       </ListWrapper>
       <MiniJobWrapper>
-        {displayedData.map((notion, index) => (
+        {displayedData.map((notion: NotionProps, index: number) => (
           <MiniJob
             key={startIndex + index}
             Num={startIndex + index + 1}
