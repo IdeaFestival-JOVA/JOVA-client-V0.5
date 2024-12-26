@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import LoginButton from "./loginBtn";
-import Header from "../../components/Header";
 import styled from "styled-components";
 
 function useQuery() {
@@ -44,7 +43,6 @@ const Login = () => {
 
   return (
     <div>
-      <Header />
       <Wrapper>
         <h1>Code: {code}</h1>
         <LoginButton />
