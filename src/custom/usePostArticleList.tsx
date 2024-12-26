@@ -24,7 +24,6 @@ const usePostArticleList = () => {
   const url =
     "https://port-0-jova-backend-m0kvtwm45b2f2eb2.sel4.cloudtype.app/articles";
 
-  // 게시물 전송 함수
   const postArticle = async ({
     title,
     content,
@@ -40,7 +39,7 @@ const usePostArticleList = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer your_access_token", // 유효한 토큰으로 변경
+          Authorization: "Bearer your_access_token",
         },
         body: JSON.stringify({
           title: title,
@@ -55,7 +54,7 @@ const usePostArticleList = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const result: Article[] = await response.json(); // Type assertion for clarity
+      const result: Article[] = await response.json();
       setData(result);
     } catch (error) {
       setError("요청 실패!");
