@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { Helmet } from "react-helmet";
+import usePostArticleList from "../../../custom/usePostArticleList";
 
 const WrapperBox = styled.div`
   width: 100vw;
@@ -128,11 +129,18 @@ function JobNotionBody() {
     e.preventDefault();
   };
 
+  usePostArticleList({
+    title: title,
+    content: contents,
+    category: 0,
+    author: "이상혁",
+    endsAt: "2024.12.26",
+  });
+
   const goServer = () => {
     console.log(title);
     console.log(contents);
   };
-
   useEffect(() => {
     const updatedImages = images.filter((image) =>
       contents.includes(`![Image ${image.id}]`)
