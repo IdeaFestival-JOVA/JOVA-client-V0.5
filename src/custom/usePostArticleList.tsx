@@ -8,7 +8,21 @@ type Article = {
   Num: number;
 };
 
-const usePostArticleList = () => {
+type Input = {
+  title: string;
+  content: string;
+  category: number;
+  author: string;
+  endsAt: string;
+};
+
+const usePostArticleList = ({
+  title,
+  content,
+  category,
+  author,
+  endsAt,
+}: Input) => {
   const [data, setData] = useState<Article[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -29,11 +43,11 @@ const usePostArticleList = () => {
             Authorization: "Bearer your_access_token", // Replace with a valid token or dynamic source
           },
           body: JSON.stringify({
-            title: "dltkdgur",
-            content: "이상혁 테스트",
-            category: 0,
-            author: "이상혁",
-            endsAt: "2024.12.25",
+            title: title,
+            content: content,
+            category: category,
+            author: author,
+            endsAt: endsAt,
           }),
         });
 
@@ -54,7 +68,9 @@ const usePostArticleList = () => {
     fetchData();
   }, [url]);
 
-  return { data, loading, error };
+  console.log(data, loading, error);
+
+  return;
 };
 
 export default usePostArticleList;
