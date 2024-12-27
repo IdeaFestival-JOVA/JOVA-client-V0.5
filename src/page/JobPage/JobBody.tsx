@@ -90,7 +90,7 @@ function JobBody() {
         ) : data?.length ? (
           data
             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-            .map((item) => <MiniJob key={item.Num} {...item} />)
+            .map((item, index) => <MiniJob key={index + 1} {...item} />)
         ) : (
           <p>No items available</p>
         )}
