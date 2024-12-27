@@ -21,6 +21,9 @@ const WriteWrapper = styled.div`
   margin-top: 15px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
 `;
 
 type NotionProps = {
@@ -59,20 +62,29 @@ function RecentWrite() {
       endsAt: "2024.12.30",
       author: "박리액트",
     },
+    {
+      title: "UI/UX 혁신",
+      content: "# 사용자를 위한 디자인",
+      category: "FRONTEND",
+      createdAt: "2024.12.15",
+      endsAt: "2024.12.29",
+      author: "정유아이",
+    },
   ];
 
   return (
     <Wrapper>
       <Text>공지</Text>
       <WriteWrapper>
-        {NotionArray.map((data) => {
-          return (
-            <MiniCard
-              title={data.title}
-              author={data.author}
-              createdAt={data.createdAt}
-            />
-          );
+        {NotionArray.map((data, index) => {
+          if (index < 4)
+            return (
+              <MiniCard
+                title={data.title}
+                author={data.author}
+                createdAt={data.createdAt}
+              />
+            );
         })}
       </WriteWrapper>
     </Wrapper>
