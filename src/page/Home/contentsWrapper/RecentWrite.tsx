@@ -36,12 +36,28 @@ type NotionProps = {
 function RecentWrite() {
   const NotionArray: NotionProps[] = [
     {
-      title: "이상혁근 신이야",
+      title: "이상혁은은 신이야",
       content: "# 내가 바로 정의다",
       category: "FRONTEND",
       createdAt: "2024.12.1",
       endsAt: "2024.12.31",
       author: "이상혁",
+    },
+    {
+      title: "Frontend Master",
+      content: "# 코드로 세상을 바꾸다",
+      category: "FRONTEND",
+      createdAt: "2024.12.5",
+      endsAt: "2024.12.25",
+      author: "김프론트",
+    },
+    {
+      title: "React의 모든 것",
+      content: "# 컴포넌트 설계의 정석",
+      category: "FRONTEND",
+      createdAt: "2024.12.10",
+      endsAt: "2024.12.30",
+      author: "박리액트",
     },
   ];
 
