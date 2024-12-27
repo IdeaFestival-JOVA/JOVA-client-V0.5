@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 
 type Article = {
-  User: string;
-  Title: string;
-  Time: string;
-  Contents: string;
-  Num: number;
+  title: string;
+  content: string;
+  category: string;
+  createdAt: string;
+  endsAt: string;
+  author: string;
 };
 
 const useGetAricleList = () => {
@@ -30,9 +31,24 @@ const useGetAricleList = () => {
           },
         });
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          const errorMessage = `HTTP error! Status: ${response.status} - ${response.statusText}`;
+          throw new Error(errorMessage);
         }
         const result = await response.json();
+        /*
+        /[
+          {
+            "article_id": 1,
+            "title": "에러",
+            "content": "400",
+            "category": "BACKEND",
+            "createdAt": "2024-12-27T00:00:00",
+            "endsAt": "2024-12-31T00:00:00",
+            "author": "황지훈"
+          }
+        ]
+        */
+
         setData(result);
       } catch (error) {
         setError("요청 실패!");
