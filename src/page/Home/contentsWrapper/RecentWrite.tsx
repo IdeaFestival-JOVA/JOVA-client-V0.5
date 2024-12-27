@@ -41,7 +41,7 @@ function RecentWrite() {
       category: "FRONTEND",
       createdAt: "2024.12.1",
       endsAt: "2024.12.31",
-      author: "이상혁혁",
+      author: "이상혁",
     },
   ];
 
