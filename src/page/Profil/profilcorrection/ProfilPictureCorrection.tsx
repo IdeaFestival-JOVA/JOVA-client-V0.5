@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import baseImage from "../../../images/image/baseImage.png";
 import UniversalMajor from "../majorSelection/universalMajor";
+import FunctionGroup from "../majorSelection/functionGroup";
 
 // 스타일 컴포넌트 정의
 const Text = styled.h1`
@@ -217,6 +218,7 @@ function ProfilPictureCorrection() {
             <CloseButton onClick={handleModalClose}>×</CloseButton>
             <h2>전공 선택</h2>
             <UniversalMajor />
+            <FunctionGroup />
           </ModalContent>
         </ModalBackground>
       )}
