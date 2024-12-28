@@ -39,9 +39,11 @@ function UniversalMajor() {
     if (activeIndices.includes(index)) {
       // 이미 활성화된 경우 배열에서 제거
       setActiveIndices(activeIndices.filter((i) => i !== index));
+      console.log(activeIndices);
     } else {
       // 활성화되지 않은 경우 배열에 추가
       setActiveIndices([...activeIndices, index]);
+      console.log(activeIndices);
     }
   };
 
