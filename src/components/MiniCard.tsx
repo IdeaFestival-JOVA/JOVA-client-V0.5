@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 type PropsCard = {
   title: string;
-  author: string;
+  userName: string;
   createdAt: string;
-  endsAt: string;
+  date: string;
   content: string;
 };
 
@@ -40,18 +40,18 @@ const TableCell = styled.div<{ flex?: number }>`
   text-overflow: ellipsis;
 `;
 
-function MiniCard({ title, author, createdAt, endsAt, content }: PropsCard) {
+function MiniCard({ title, userName, createdAt, date, content }: PropsCard) {
   const go = useNavigate();
 
   const handleClick = () => {
-    go("/notion/detail", { state: { author, title, endsAt, content } });
+    go("/notion/detail", { state: { userName, title, date, content } });
   };
 
   return (
     <Wrapper onClick={handleClick}>
       <Table>
         <TableRow>
-          <TableCell flex={1}>{author}</TableCell>{" "}
+          <TableCell flex={1}>{userName}</TableCell>{" "}
           <TableCell flex={1}>{title}</TableCell>
           <TableCell flex={1}>{createdAt}</TableCell>
         </TableRow>
