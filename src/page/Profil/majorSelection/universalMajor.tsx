@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 // 스타일 정의
@@ -14,11 +14,11 @@ const MajorBox = styled.div<{ isActive: boolean }>`
   white-space: nowrap;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   cursor: pointer; /* 클릭 가능 커서 */
-  transition: background-color 0.3s, color 0.3s; /* 부드러운 색상 전환 */
+  transition: background-color 0.1s, color 0.1s; /* 부드러운 색상 전환 */
 `;
 
 function UniversalMajor() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeIndices, setActiveIndices] = useState<number[]>([]);
 
   const majors = [
     "프론트엔드",
@@ -32,7 +32,13 @@ function UniversalMajor() {
   ];
 
   const handleClick = (index: number) => {
-    setActiveIndex(index); // 클릭된 항목의 인덱스를 저장
+    if (activeIndices.includes(index)) {
+      // 이미 활성화된 경우 배열에서 제거
+      setActiveIndices(activeIndices.filter((i) => i !== index));
+    } else {
+      // 활성화되지 않은 경우 배열에 추가
+      setActiveIndices([...activeIndices, index]);
+    }
   };
 
   return (
@@ -40,7 +46,7 @@ function UniversalMajor() {
       {majors.map((major, index) => (
         <MajorBox
           key={index}
-          isActive={activeIndex === index} // 클릭된 항목만 활성화
+          isActive={activeIndices.includes(index)} // 클릭된 항목인지 확인
           onClick={() => handleClick(index)}
         >
           {major}
