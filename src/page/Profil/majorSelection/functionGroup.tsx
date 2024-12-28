@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { useState } from "react";
+import styled from "styled-components";
 
 const MajorBox = styled.div<{ isActive: boolean }>`
   display: inline-block;
@@ -12,16 +12,28 @@ const MajorBox = styled.div<{ isActive: boolean }>`
   text-align: center;
   white-space: nowrap;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  cursor: pointer; /* 클릭 가능 커서 */
-  transition: background-color 0.1s, color 0.1s; /* 부드러운 색상 전환 */
+  cursor: pointer;
+  transition: background-color 0.1s, color 0.1s;
 `;
 
 const FunctionMajorText = styled.h3`
   margin-right: 320px;
 `;
 
-function FunctionGroup() {
-  const [activeIndices, setActiveIndices] = useState<number[]>([]);
+const Button = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: cetner;
+  border-radius: 10px;
+`;
+
+interface FunctionGroupProps {
+  setActiveIndices: React.Dispatch<React.SetStateAction<number[]>>; // 상태 업데이트 함수
+  setModal: (x: boolean) => void;
+}
+
+function FunctionGroup({ setActiveIndices, setModal }: FunctionGroupProps) {
+  const [activeIndices, setMajor] = useState<number[]>([]);
 
   const majors = [
     "개임개발",
@@ -34,14 +46,15 @@ function FunctionGroup() {
 
   const handleClick = (index: number) => {
     if (activeIndices.includes(index)) {
-      // 이미 활성화된 경우 배열에서 제거
-      setActiveIndices(activeIndices.filter((i) => i !== index));
-      console.log(activeIndices);
+      setMajor(activeIndices.filter((i) => i !== index));
     } else {
-      // 활성화되지 않은 경우 배열에 추가
-      setActiveIndices([...activeIndices, index]);
-      console.log(activeIndices);
+      setMajor([...activeIndices, index]);
     }
+  };
+
+  const handleProps = () => {
+    setActiveIndices(activeIndices);
+    setModal(false);
   };
 
   return (
@@ -50,12 +63,13 @@ function FunctionGroup() {
       {majors.map((major, index) => (
         <MajorBox
           key={index}
-          isActive={activeIndices.includes(index)} // 클릭된 항목인지 확인
+          isActive={activeIndices.includes(index)}
           onClick={() => handleClick(index)}
         >
           {major}
         </MajorBox>
       ))}
+      <Button onClick={handleProps}>제출</Button>
     </div>
   );
 }
