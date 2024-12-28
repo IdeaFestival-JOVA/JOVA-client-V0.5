@@ -17,7 +17,7 @@ const MajorBox = styled.div<{ isActive: boolean }>`
 `;
 
 const FunctionMajorText = styled.h3`
-  margin-right: 270px;
+  margin-right: 320px;
 `;
 
 function FunctionGroup() {
