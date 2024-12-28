@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 const MajorBox = styled.div<{ isActive: boolean }>`
@@ -20,21 +19,15 @@ const FunctionMajorText = styled.h3`
   margin-right: 320px;
 `;
 
-const Button = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: cetner;
-  border-radius: 10px;
-`;
-
 interface FunctionGroupProps {
+  activeIndices: number[];
   setActiveIndices: React.Dispatch<React.SetStateAction<number[]>>; // 상태 업데이트 함수
-  setModal: (x: boolean) => void;
 }
 
-function FunctionGroup({ setActiveIndices, setModal }: FunctionGroupProps) {
-  const [activeIndices, setMajor] = useState<number[]>([]);
-
+function FunctionGroup({
+  activeIndices,
+  setActiveIndices,
+}: FunctionGroupProps) {
   const majors = [
     "개임개발",
     "모바일로보틱스",
@@ -46,15 +39,10 @@ function FunctionGroup({ setActiveIndices, setModal }: FunctionGroupProps) {
 
   const handleClick = (index: number) => {
     if (activeIndices.includes(index)) {
-      setMajor(activeIndices.filter((i) => i !== index));
+      setActiveIndices(activeIndices.filter((i) => i !== index));
     } else {
-      setMajor([...activeIndices, index]);
+      setActiveIndices([...activeIndices, index]);
     }
-  };
-
-  const handleProps = () => {
-    setActiveIndices(activeIndices);
-    setModal(false);
   };
 
   return (
@@ -69,7 +57,6 @@ function FunctionGroup({ setActiveIndices, setModal }: FunctionGroupProps) {
           {major}
         </MajorBox>
       ))}
-      <Button onClick={handleProps}>제출</Button>
     </div>
   );
 }

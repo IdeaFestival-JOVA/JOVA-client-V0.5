@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 // 스타일 정의
@@ -21,9 +20,15 @@ const NormalMajorText = styled.h3`
   margin-right: 300px;
 `;
 
-function UniversalMajor() {
-  const [activeIndices, setActiveIndices] = useState<number[]>([]);
+interface FunctionGroupProps {
+  activeIndices: number[];
+  setActiveIndices: React.Dispatch<React.SetStateAction<number[]>>; // 상태 업데이트 함수
+}
 
+function UniversalMajor({
+  activeIndices,
+  setActiveIndices,
+}: FunctionGroupProps) {
   const majors = [
     "FrontEnd",
     "BackEnd",
@@ -37,13 +42,9 @@ function UniversalMajor() {
 
   const handleClick = (index: number) => {
     if (activeIndices.includes(index)) {
-      // 이미 활성화된 경우 배열에서 제거
       setActiveIndices(activeIndices.filter((i) => i !== index));
-      console.log(activeIndices);
     } else {
-      // 활성화되지 않은 경우 배열에 추가
       setActiveIndices([...activeIndices, index]);
-      console.log(activeIndices);
     }
   };
 
