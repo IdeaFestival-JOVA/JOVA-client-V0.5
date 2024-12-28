@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 type PropsCard = {
   title: string;
   author: string;
   createdAt: string;
+  endsAt: string;
+  content: string;
 };
 
 const Wrapper = styled.div`
@@ -37,9 +40,15 @@ const TableCell = styled.div<{ flex?: number }>`
   text-overflow: ellipsis;
 `;
 
-function MiniCard({ title, author, createdAt }: PropsCard) {
+function MiniCard({ title, author, createdAt, endsAt, content }: PropsCard) {
+  const go = useNavigate();
+
+  const handleClick = () => {
+    go("/notion/detail", { state: { author, title, endsAt, content } });
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onClick={handleClick}>
       <Table>
         <TableRow>
           <TableCell flex={1}>{author}</TableCell>{" "}
