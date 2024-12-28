@@ -25,13 +25,13 @@ function UniversalMajor() {
   const [activeIndices, setActiveIndices] = useState<number[]>([]);
 
   const majors = [
-    "프론트엔드",
-    "백엔드",
+    "FrontEnd",
+    "BackEnd",
     "DevOps",
     "UI/UX design",
     "AI",
-    "안드로이드",
-    "iOS",
+    "AOS",
+    "IOS",
     "DB",
   ];
 
