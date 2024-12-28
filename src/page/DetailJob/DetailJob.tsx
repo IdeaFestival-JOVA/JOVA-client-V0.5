@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import InfoBoxJob from "./infoBoxJob";
 import Header from "../../components/Header";
 
-function Detail() {
+function DetailJob() {
   const location = useLocation();
   const { userName, title, date, content } = location.state || {}; // 전달된 데이터 수신
 
@@ -23,4 +23,4 @@ function Detail() {
   );
 }
 
-export default Detail;
+export default DetailJob;
