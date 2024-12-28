@@ -72,7 +72,18 @@ function RecentNotion() {
   return (
     <Wrapper>
       <Text>구인구직 판</Text>
-      <NotionWrapper></NotionWrapper>
+      <NotionWrapper>
+        {JobArray.map((data, index) => {
+          if (index < 4)
+            return (
+              <MiniCard
+                title={data.title}
+                author={data.author}
+                createdAt={data.createdAt}
+              />
+            );
+        })}
+      </NotionWrapper>
     </Wrapper>
   );
 }
