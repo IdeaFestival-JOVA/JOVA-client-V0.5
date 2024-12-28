@@ -78,8 +78,10 @@ function RecentNotion() {
             return (
               <MiniCard
                 title={data.title}
-                author={data.author}
+                userName={data.author}
                 createdAt={data.createdAt}
+                date={data.endsAt}
+                content={data.content}
               />
             );
         })}

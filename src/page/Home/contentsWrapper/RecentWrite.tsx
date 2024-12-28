@@ -81,9 +81,9 @@ function RecentWrite() {
             return (
               <MiniCard
                 title={data.title}
-                author={data.author}
+                userName={data.author}
                 createdAt={data.createdAt}
-                endsAt={data.endsAt}
+                date={data.endsAt}
                 content={data.content}
               />
             );
