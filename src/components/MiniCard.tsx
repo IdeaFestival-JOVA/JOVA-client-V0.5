@@ -9,12 +9,6 @@ type PropsCard = {
   content: string;
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-`;
-
 const Table = styled.div`
   width: 100%;
   border-collapse: collapse; /* 테이블 선 겹침 제거 */
@@ -48,15 +42,13 @@ function MiniCard({ title, userName, createdAt, date, content }: PropsCard) {
   };
 
   return (
-    <Wrapper onClick={handleClick}>
-      <Table>
-        <TableRow>
-          <TableCell flex={1}>{userName}</TableCell>{" "}
-          <TableCell flex={1}>{title}</TableCell>
-          <TableCell flex={1}>{createdAt}</TableCell>
-        </TableRow>
-      </Table>
-    </Wrapper>
+    <Table onClick={handleClick}>
+      <TableRow>
+        <TableCell flex={1}>{userName}</TableCell>{" "}
+        <TableCell flex={1}>{title}</TableCell>
+        <TableCell flex={1}>{createdAt}</TableCell>
+      </TableRow>
+    </Table>
   );
 }
 
