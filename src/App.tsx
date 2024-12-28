@@ -20,6 +20,7 @@ function App() {
         <Route path="/notion" element={<Notion />} />
         <Route path="/profil" element={<Profil />} />
         <Route path="/notion/detail" element={<Detail />} />
+        <Route path="/jobpage/detail" element={<Detail />} />
         <Route path="/notification" element={<Notification />} />
         <Route path="/jobnotion" element={<JobNotion />} />
         <Route path="/profilcorrection" element={<ProfilCorrection />} />
