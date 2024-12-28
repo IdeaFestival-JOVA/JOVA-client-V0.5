@@ -44,14 +44,6 @@ const MiniNotionWrapper = styled.div`
   align-items: center;
 `;
 
-const ListWrapper = styled.div`
-  width: 1103px;
-  height: 23px;
-  display: flex;
-  align-items: center;
-  border-bottom: 4px solid gray;
-`;
-
 const PaginationWrapper = styled.div`
   display: flex;
   justify-content: center;
