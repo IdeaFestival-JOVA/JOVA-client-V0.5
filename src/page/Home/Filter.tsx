@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SearchWrapper = styled.div`
+const FilterWrapper = styled.div`
   width: 540px;
   height: 39.88px;
   border: 2px solid black;
@@ -10,7 +10,7 @@ const SearchWrapper = styled.div`
   align-items: center;
 `;
 
-const Search = styled.input`
+const Filter = styled.input`
     width:500px;
     height:30px;
     border:0;
@@ -18,14 +18,14 @@ const Search = styled.input`
     &:focus {
         outline: none; 
 `;
-function Filter() {
+function FilterBar() {
   return (
     <>
-      <SearchWrapper>
-        <Search type="text" placeholder="구인구직 찾아보기"></Search>
-      </SearchWrapper>
+      <FilterWrapper>
+        <Filter type="text" placeholder="구인구직 찾아보기"></Filter>
+      </FilterWrapper>
     </>
   );
 }
 
-export default Filter;
+export default FilterBar;
