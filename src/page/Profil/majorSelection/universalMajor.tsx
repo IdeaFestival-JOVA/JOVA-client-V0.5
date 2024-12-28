@@ -17,6 +17,10 @@ const MajorBox = styled.div<{ isActive: boolean }>`
   transition: background-color 0.1s, color 0.1s; /* 부드러운 색상 전환 */
 `;
 
+const NormalMajorText = styled.h3`
+  margin-right: 270px;
+`;
+
 function UniversalMajor() {
   const [activeIndices, setActiveIndices] = useState<number[]>([]);
 
@@ -43,6 +47,7 @@ function UniversalMajor() {
 
   return (
     <div>
+      <NormalMajorText>일반전공</NormalMajorText>
       {majors.map((major, index) => (
         <MajorBox
           key={index}
