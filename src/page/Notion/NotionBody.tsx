@@ -82,24 +82,21 @@ const NotificationButton = styled(Link)`
 `;
 
 const Table = styled.div`
-  width: 100%;
-  border-collapse: collapse; /* 테이블 선 겹침 제거 */
-  margin: 0; /* 테이블 자체 여백 제거 */
+  width: 1103px;
+  border-collapse: collapse;
+  margin: 0;
 `;
 
 const TableRow = styled.div`
   display: flex;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 3px solid #e0e0e0;
   padding: 5px 0; /* 상하 여백 최소화 */
   line-height: 1; /* 줄 간격 최소화 */
-  &:hover {
-    background-color: #f9f9f9;
-  }
 `;
 
 const TableCell = styled.div<{ flex?: number }>`
   flex: ${({ flex }) => flex || 1};
-  padding: 10px;
+  padding: 5px;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
