@@ -38,7 +38,7 @@ const TextWrapper = styled.div`
 `;
 
 const IconBox = styled(Link)`
-  margin-top: 15px;
+  margin-top: 5px;
 `;
 
 function Header() {
