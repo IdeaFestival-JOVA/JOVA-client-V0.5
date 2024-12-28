@@ -89,6 +89,31 @@ const NotificationButton = styled(Link)`
   color: black;
 `;
 
+const Table = styled.div`
+  width: 100%;
+  border-collapse: collapse; /* 테이블 선 겹침 제거 */
+  margin: 0; /* 테이블 자체 여백 제거 */
+`;
+
+const TableRow = styled.div`
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 5px 0; /* 상하 여백 최소화 */
+  line-height: 1; /* 줄 간격 최소화 */
+  &:hover {
+    background-color: #f9f9f9;
+  }
+`;
+
+const TableCell = styled.div<{ flex?: number }>`
+  flex: ${({ flex }) => flex || 1};
+  padding: 10px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 type NotionProps = {
   User: string;
   Title: string;
@@ -394,12 +419,14 @@ function NotionBody() {
       <Text>공지사항</Text>
       <DividSpace />
       <TextP marginLeft={0}>전체 {TempArray.length}건</TextP>
-      <ListWrapper>
-        <TextP marginLeft={65}>No</TextP>
-        <TextP marginLeft={108}>작성자</TextP>
-        <TextP marginLeft={353}>제목</TextP>
-        <TextP marginLeft={346}>등록일</TextP>
-      </ListWrapper>
+      <Table>
+        <TableRow>
+          <TableCell flex={0.5}>No</TableCell>
+          <TableCell flex={1}>작성자</TableCell>
+          <TableCell flex={2}>제목</TableCell>
+          <TableCell flex={1}>등록일</TableCell>
+        </TableRow>
+      </Table>
       <MiniNotionWrapper>
         {displayedData.map((notion, index) => (
           <MiniNotion
