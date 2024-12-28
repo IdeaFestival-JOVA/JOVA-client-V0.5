@@ -18,7 +18,7 @@ const MajorBox = styled.div<{ isActive: boolean }>`
 `;
 
 const NormalMajorText = styled.h3`
-  margin-right: 270px;
+  margin-right: 300px;
 `;
 
 function UniversalMajor() {
