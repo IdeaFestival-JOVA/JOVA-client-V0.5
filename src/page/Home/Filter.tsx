@@ -52,7 +52,11 @@ const Overlay = styled.div`
   z-index: 999;
 `;
 
-const ModalClose = styled.div``;
+const ModalClose = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 function FilterBar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
