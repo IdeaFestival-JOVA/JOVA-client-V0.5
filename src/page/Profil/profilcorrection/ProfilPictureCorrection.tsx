@@ -166,10 +166,32 @@ const CloseButton = styled.button`
     color: #333;
   }
 `;
+const MajorBox = styled.div`
+  display: inline-block;
+  background-color: #818181;
+  color: white;
+  padding: 6px 12px;
+  margin: 4px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+`;
+
+const Button = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+`;
 
 // 컴포넌트 정의
 function ProfilPictureCorrection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [universalMajor, setUniversalMajor] = useState<number[]>([]);
+  const [functionlMajor, setFunctionMajor] = useState<number[]>([]);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -205,6 +227,32 @@ function ProfilPictureCorrection() {
           </ImformationWrapper>
           <ImformationWrapper>
             <ProfilInformation>전공:</ProfilInformation>
+            <div>
+              {universalMajor.map((x) => {
+                const majors = [
+                  "FrontEnd",
+                  "BackEnd",
+                  "DevOps",
+                  "UI/UX design",
+                  "AI",
+                  "AOS",
+                  "IOS",
+                  "DB",
+                ];
+                return <MajorBox>{majors[x]}</MajorBox>;
+              })}
+              {functionlMajor.map((x) => {
+                const majors = [
+                  "개임개발",
+                  "모바일로보틱스",
+                  "클라우드컴퓨팅",
+                  "플러터",
+                  "사이버보안",
+                  "IT네트워크",
+                ];
+                return <MajorBox>{majors[x]}</MajorBox>;
+              })}
+            </div>
             <MajorSellectBtn onClick={handleModalOpen}>
               전공 선택
             </MajorSellectBtn>
@@ -217,8 +265,15 @@ function ProfilPictureCorrection() {
           <ModalContent>
             <CloseButton onClick={handleModalClose}>×</CloseButton>
             <h2>전공 선택</h2>
-            <UniversalMajor />
-            <FunctionGroup />
+            <UniversalMajor
+              activeIndices={universalMajor}
+              setActiveIndices={setUniversalMajor}
+            />
+            <FunctionGroup
+              activeIndices={functionlMajor}
+              setActiveIndices={setFunctionMajor}
+            />
+            <Button onClick={handleModalClose}>제출</Button>
           </ModalContent>
         </ModalBackground>
       )}
