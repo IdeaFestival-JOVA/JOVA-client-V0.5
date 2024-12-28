@@ -83,6 +83,8 @@ function RecentWrite() {
                 title={data.title}
                 author={data.author}
                 createdAt={data.createdAt}
+                endsAt={data.endsAt}
+                content={data.content}
               />
             );
         })}
