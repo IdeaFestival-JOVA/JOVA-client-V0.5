@@ -9,6 +9,7 @@ import Notification from "./page/Notion/notification/Notification";
 import JobNotion from "./page/JobPage/JobNotion/JobNotion";
 import ProfilCorrection from "./page/Profil/profilcorrection/ProfilCorrection";
 import LoginPage from "./page/login/loginPage";
+import DetailJob from "./page/DetailJob/DetailJob";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path="/notion" element={<Notion />} />
         <Route path="/profil" element={<Profil />} />
         <Route path="/notion/detail" element={<Detail />} />
-        <Route path="/jobpage/detail" element={<Detail />} />
+        <Route path="/jobpage/detail" element={<DetailJob />} />
         <Route path="/notification" element={<Notification />} />
         <Route path="/jobnotion" element={<JobNotion />} />
         <Route path="/profilcorrection" element={<ProfilCorrection />} />
