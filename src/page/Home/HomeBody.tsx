@@ -1,5 +1,4 @@
 import Wrapper from "./contentsWrapper/ContentsWrapper";
-import SearchBar from "./SearchHome";
 import styled from "styled-components";
 
 const Body = styled.div`
@@ -15,7 +14,6 @@ const Body = styled.div`
 function HomeBody() {
   return (
     <Body>
-      <SearchBar />
       <Wrapper />
     </Body>
   );
