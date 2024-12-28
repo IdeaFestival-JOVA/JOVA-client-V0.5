@@ -8,7 +8,7 @@ const MajorBox = styled.div<{ isActive: boolean }>`
   color: ${(props) => (props.isActive ? "#fff" : "#333")};
   padding: 6px 12px;
   margin: 4px;
-  border-radius: 12px;
+  border-radius: 5px;
   font-size: 14px;
   text-align: center;
   white-space: nowrap;
