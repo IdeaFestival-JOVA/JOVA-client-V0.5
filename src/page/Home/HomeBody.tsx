@@ -1,5 +1,6 @@
 import Wrapper from "./contentsWrapper/ContentsWrapper";
 import styled from "styled-components";
+import FilterBar from "./Filter";
 
 const Body = styled.div`
   width: 100%;
@@ -14,6 +15,7 @@ const Body = styled.div`
 function HomeBody() {
   return (
     <Body>
+      <FilterBar />
       <Wrapper />
     </Body>
   );
