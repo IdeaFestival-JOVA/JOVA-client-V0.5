@@ -65,7 +65,7 @@ function MiniJob({
   }, [title, content, category, createdAt, endsAt, author]);
 
   const handleClick = () => {
-    go("/notion/detail", { state: { Author, Title, EndsAt, Content } });
+    go("/jobpage/detail", { state: { Author, Title, EndsAt, Content } });
   };
 
   return (
