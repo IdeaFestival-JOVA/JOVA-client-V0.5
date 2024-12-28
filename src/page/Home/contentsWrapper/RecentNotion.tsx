@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import MiniCard from "../../../components/MiniCard";
+import MiniCardJob from "../../../components/MiniCardJob";
 
 const Text = styled.h1`
   font-family: "Pretendard-Regular", sans-serif;
@@ -76,7 +76,7 @@ function RecentNotion() {
         {JobArray.map((data, index) => {
           if (index < 4)
             return (
-              <MiniCard
+              <MiniCardJob
                 title={data.title}
                 userName={data.author}
                 createdAt={data.createdAt}
