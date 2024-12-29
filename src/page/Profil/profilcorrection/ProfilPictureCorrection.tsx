@@ -199,7 +199,7 @@ const CancleBtn = styled.div`
   background-color: white;
   color: #929292;
   border-radius: 8px;
-  border: 1px solid #929292 
+  border: 1px solid #929292;
   display: flex;
   align-items: center;
   justify-content: center;
