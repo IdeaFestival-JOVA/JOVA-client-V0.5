@@ -178,6 +178,7 @@ const MajorBox = styled.div`
 `;
 
 const BtnWrapper = styled.div`
+  margin-left: 291px;
   display: flex;
   flex-direction: row;
 `;
