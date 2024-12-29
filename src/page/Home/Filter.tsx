@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import UniversalMajor from "../Profil/majorSelection/universalMajor";
 import FunctionGroup from "../Profil/majorSelection/functionGroup";
+import SearchIcon from "../../images/SearchIcon";
 
 const FilterWrapper = styled.div`
   width: 540px;
@@ -88,12 +89,16 @@ function FilterBar() {
     setIsModalOpen(false);
   };
 
+  const handleClick = () => {
+    console.log(universalMajor, functionMajor);
+  };
+
   const isEmpty = universalMajor.length === 0 && functionMajor.length === 0;
 
   return (
     <>
-      <FilterWrapper onClick={handleModal}>
-        <Filter>
+      <FilterWrapper>
+        <Filter onClick={handleModal}>
           {isEmpty ? (
             "당신이 검색할 전공을 선택해 주세요"
           ) : (
@@ -126,6 +131,9 @@ function FilterBar() {
             </div>
           )}
         </Filter>
+        <div onClick={handleClick}>
+          <SearchIcon />
+        </div>
       </FilterWrapper>
       {isModalOpen && (
         <>
