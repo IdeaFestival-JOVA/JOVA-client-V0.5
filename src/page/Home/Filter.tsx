@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import UniversalMajor from "../Profil/majorSelection/universalMajor";
+import FunctionGroup from "../Profil/majorSelection/functionGroup";
 
 const FilterWrapper = styled.div`
   width: 540px;
@@ -56,10 +58,27 @@ const ModalClose = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 380px;
+`;
+
+const MajorBox = styled.div`
+  display: inline-block;
+  background-color: #818181;
+  color: white;
+  padding: 6px 12px;
+  margin: 4px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
 function FilterBar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [universalMajor, setUniversalMajor] = useState<number[]>([]);
+  const [functionMajor, setFunctionMajor] = useState<number[]>([]);
 
   const handleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -69,10 +88,44 @@ function FilterBar() {
     setIsModalOpen(false);
   };
 
+  const isEmpty = universalMajor.length === 0 && functionMajor.length === 0;
+
   return (
     <>
       <FilterWrapper onClick={handleModal}>
-        <Filter>당신의 전공을 선택해 주세요</Filter>
+        <Filter>
+          {isEmpty ? (
+            "당신이 검색할 전공을 선택해 주세요"
+          ) : (
+            <div>
+              {universalMajor.map((e) => {
+                const majors = [
+                  "FrontEnd",
+                  "BackEnd",
+                  "DevOps",
+                  "UI/UX design",
+                  "AI",
+                  "AOS",
+                  "IOS",
+                  "DB",
+                ];
+
+                return <MajorBox key={`uni-${e}`}>{majors[e]}</MajorBox>;
+              })}
+              {functionMajor.map((E) => {
+                const majors = [
+                  "게임개발",
+                  "모바일로보틱스",
+                  "클라우드컴퓨팅",
+                  "플러터",
+                  "사이버보안",
+                  "IT네트워크",
+                ];
+                return <MajorBox key={`func-${E}`}>{majors[E]}</MajorBox>;
+              })}
+            </div>
+          )}
+        </Filter>
       </FilterWrapper>
       {isModalOpen && (
         <>
@@ -80,6 +133,14 @@ function FilterBar() {
           <Modal>
             <ModalClose onClick={closeModal}>x</ModalClose>
             <h2>전공을 선택해 주세요!</h2>
+            <UniversalMajor
+              activeIndices={universalMajor}
+              setActiveIndices={setUniversalMajor}
+            />
+            <FunctionGroup
+              activeIndices={functionMajor}
+              setActiveIndices={setFunctionMajor}
+            />
           </Modal>
         </>
       )}
