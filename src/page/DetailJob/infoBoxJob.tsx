@@ -27,7 +27,6 @@ const Box1 = styled.div`
 const Box2 = styled.div`
   width: 72px;
   height: 64px;
-  background-color: skyblue;
 `;
 const Content = styled.h1`
   overflow: hidden;
