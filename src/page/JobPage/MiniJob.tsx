@@ -66,6 +66,7 @@ function MiniJob({
 
   const handleClick = () => {
     go("/jobpage/detail", { state: { Author, Title, EndsAt, Content } });
+    console.log(Category);
   };
 
   return (
