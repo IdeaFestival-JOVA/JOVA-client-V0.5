@@ -29,7 +29,7 @@ const ProfilImage = styled.img`
 
 const ProfilInformationWrapper = styled.div`
   width: 562px;
-  height: 376px;
+  height: 480px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -177,6 +177,33 @@ const MajorBox = styled.div`
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
+const BtnWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const SubmitBtn = styled.div`
+  width: 135px;
+  height: 65px;
+  background-color: #929292;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const CancleBtn = styled.div`
+  width: 135px;
+  height: 65px;
+  background-color: white;
+  color: #929292;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 // 컴포넌트 정의
 function ProfilPictureCorrection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -270,6 +297,10 @@ function ProfilPictureCorrection() {
               전공 선택
             </MajorSellectBtn>
           </ImformationWrapper>
+          <BtnWrapper>
+            <SubmitBtn>수정</SubmitBtn>
+            <CancleBtn>취소</CancleBtn>
+          </BtnWrapper>
         </ProfilInformationWrapper>
       </ProfilWrapper>
 
