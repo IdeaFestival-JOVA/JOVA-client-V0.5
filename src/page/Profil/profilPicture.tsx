@@ -54,6 +54,8 @@ const CorrectionButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 60px;
+  margin-left: 1000px;
 `;
 
 function ProfilPicture() {
