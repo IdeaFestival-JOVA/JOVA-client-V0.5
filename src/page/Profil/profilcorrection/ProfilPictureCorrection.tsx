@@ -65,17 +65,15 @@ const Body = styled.div`
   flex-direction: column;
 `;
 
-const ImageUpload = styled.div`
+const ImageUpload = styled.input`
   border: 2px dashed #ccc;
   border-radius: 8px;
   width: 197px;
-  height: 87px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 57px;
   font-size: 14px;
   color: #999;
   cursor: pointer;
+  padding-top: 30px;
 
   &:hover {
     background-color: #f9f9f9;
@@ -179,19 +177,12 @@ const MajorBox = styled.div`
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
-const Button = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-`;
-
 // 컴포넌트 정의
 function ProfilPictureCorrection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [profil, setProfil] = useState<string>(baseImage);
   const [universalMajor, setUniversalMajor] = useState<number[]>([]);
-  const [functionlMajor, setFunctionMajor] = useState<number[]>([]);
+  const [functionMajor, setFunctionMajor] = useState<number[]>([]);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -201,29 +192,51 @@ function ProfilPictureCorrection() {
     setIsModalOpen(false);
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+
+      // 파일을 Base64로 변환하여 미리보기 가능
+      reader.onload = () => {
+        if (reader.result) {
+          setProfil(reader.result.toString());
+        }
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <Body>
       <Text>개인정보 수정</Text>
       <ProfilWrapper>
         <ImageCorrection>
-          <ProfilImage src={baseImage} />
+          <ProfilImage src={profil} alt="Profile" />
           <MiniBoxWrapper>
-            <ImageUpload>이미지 업로드하기</ImageUpload>
-            <ToBaseImage>기본이미지</ToBaseImage>
+            <ImageUpload
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+            <ToBaseImage onClick={() => setProfil(baseImage)}>
+              기본이미지
+            </ToBaseImage>
           </MiniBoxWrapper>
         </ImageCorrection>
         <ProfilInformationWrapper>
           <ImformationWrapper>
             <ProfilInformation>이름:</ProfilInformation>
-            <InputBox />
+            <InputBox placeholder="이름을 입력하세요" />
           </ImformationWrapper>
           <ImformationWrapper>
-            <ProfilInformation>github:</ProfilInformation>
-            <InputBox />
+            <ProfilInformation>Github:</ProfilInformation>
+            <InputBox placeholder="Github 링크를 입력하세요" />
           </ImformationWrapper>
           <ImformationWrapper>
             <ProfilInformation>E-mail:</ProfilInformation>
-            <InputBox />
+            <InputBox placeholder="이메일 주소를 입력하세요" />
           </ImformationWrapper>
           <ImformationWrapper>
             <ProfilInformation>전공:</ProfilInformation>
@@ -239,18 +252,18 @@ function ProfilPictureCorrection() {
                   "IOS",
                   "DB",
                 ];
-                return <MajorBox>{majors[x]}</MajorBox>;
+                return <MajorBox key={`uni-${x}`}>{majors[x]}</MajorBox>;
               })}
-              {functionlMajor.map((x) => {
+              {functionMajor.map((x) => {
                 const majors = [
-                  "개임개발",
+                  "게임개발",
                   "모바일로보틱스",
                   "클라우드컴퓨팅",
                   "플러터",
                   "사이버보안",
                   "IT네트워크",
                 ];
-                return <MajorBox>{majors[x]}</MajorBox>;
+                return <MajorBox key={`func-${x}`}>{majors[x]}</MajorBox>;
               })}
             </div>
             <MajorSellectBtn onClick={handleModalOpen}>
@@ -270,10 +283,9 @@ function ProfilPictureCorrection() {
               setActiveIndices={setUniversalMajor}
             />
             <FunctionGroup
-              activeIndices={functionlMajor}
+              activeIndices={functionMajor}
               setActiveIndices={setFunctionMajor}
             />
-            <Button onClick={handleModalClose}>제출</Button>
           </ModalContent>
         </ModalBackground>
       )}
