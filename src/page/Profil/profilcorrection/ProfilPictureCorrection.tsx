@@ -3,6 +3,7 @@ import styled from "styled-components";
 import baseImage from "../../../images/image/baseImage.png";
 import UniversalMajor from "../majorSelection/universalMajor";
 import FunctionGroup from "../majorSelection/functionGroup";
+import { useNavigate } from "react-router-dom";
 
 // 스타일 컴포넌트 정의
 const Text = styled.h1`
@@ -213,12 +214,18 @@ function ProfilPictureCorrection() {
   const [universalMajor, setUniversalMajor] = useState<number[]>([]);
   const [functionMajor, setFunctionMajor] = useState<number[]>([]);
 
+  const go = useNavigate();
+
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
+  };
+
+  const handleClick = () => {
+    go("/profil");
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -300,8 +307,8 @@ function ProfilPictureCorrection() {
             </MajorSellectBtn>
           </ImformationWrapper>
           <BtnWrapper>
-            <SubmitBtn>수정</SubmitBtn>
-            <CancleBtn>취소</CancleBtn>
+            <SubmitBtn onClick={handleClick}>수정</SubmitBtn>
+            <CancleBtn onClick={handleClick}>취소</CancleBtn>
           </BtnWrapper>
         </ProfilInformationWrapper>
       </ProfilWrapper>
