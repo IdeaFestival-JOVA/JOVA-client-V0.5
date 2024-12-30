@@ -6,6 +6,7 @@ type SignUp = {
   classNum: number;
   grade: number;
   number: number;
+  password: string;
 };
 
 type Input = {
@@ -14,6 +15,7 @@ type Input = {
   classNum: number;
   grade: number;
   number: number;
+  password: string;
 };
 
 const usePostSIgnUp = () => {
@@ -30,6 +32,7 @@ const usePostSIgnUp = () => {
     classNum,
     grade,
     number,
+    password,
   }: Input) => {
     setLoading(true);
     setError(null);
@@ -47,6 +50,7 @@ const usePostSIgnUp = () => {
           classNum: classNum,
           grade: grade,
           number: number,
+          password: password,
         }),
       });
 
