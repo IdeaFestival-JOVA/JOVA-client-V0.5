@@ -4,6 +4,7 @@ import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { Helmet } from "react-helmet";
 import usePostArticleList from "../../../custom/usePostArticleList"; // Assuming it's a custom hook
+import { useNavigate } from "react-router-dom";
 
 const WrapperBox = styled.div`
   width: 100vw;
@@ -130,7 +131,10 @@ function JobNotionBody() {
     e.preventDefault();
   };
 
+  const go = useNavigate();
+
   const handleSubmit = () => {
+    go("/jobpage");
     const articleData = {
       title: title,
       content: contents,
