@@ -37,8 +37,13 @@ const TableCell = styled.div<{ flex?: number }>`
 function MiniCardJob({ title, userName, createdAt, date, content }: PropsCard) {
   const go = useNavigate();
 
+  const Author = userName;
+  const Title = title;
+  const EndsAt = date;
+  const Content = content;
+
   const handleClick = () => {
-    go("/jobpage/detail", { state: { userName, title, date, content } });
+    go("/jobpage/detail", { state: { Author, Title, EndsAt, Content } });
   };
 
   return (
