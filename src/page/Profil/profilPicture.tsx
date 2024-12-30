@@ -98,6 +98,11 @@ const SmallBlank = styled.div`
   height: 5px;
 `;
 
+const TextP = styled.p`
+  color: #979797;
+  cursor: pointer;
+`;
+
 function ProfilPicture() {
   const { name, github, email, unMajor, funMajor } = useProfilContext();
 
@@ -167,14 +172,14 @@ function ProfilPicture() {
           <h2>나의 정보</h2>
           <SmallBlank />
           <SmallBlank />
-          <p>회원 정보</p>
+          <TextP>회원 정보</TextP>
           <Blank />
           <h2>채용</h2>
           <SmallBlank />
           <SmallBlank />
-          <p>지원한 공고</p>
+          <TextP>지원한 공고</TextP>
           <SmallBlank />
-          <p>게시한 공고</p>
+          <TextP>게시한 공고</TextP>
         </MenuBox>
       </Menu>
     </>
