@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import baseImage from "../../../images/image/baseImage.png";
 import UniversalMajor from "../majorSelection/universalMajor";
 import FunctionGroup from "../majorSelection/functionGroup";
 import { useNavigate } from "react-router-dom";
+import { useProfilContext } from "../../../context/context";
 
 // 스타일 컴포넌트 정의
 const Text = styled.h1`
@@ -214,6 +215,20 @@ function ProfilPictureCorrection() {
   const [universalMajor, setUniversalMajor] = useState<number[]>([]);
   const [functionMajor, setFunctionMajor] = useState<number[]>([]);
 
+  const {
+    name,
+    github,
+    email,
+    unMajor,
+    funMajor,
+    setName,
+    setGithub,
+    setEmail,
+    setUnMajor,
+    setFunMajor,
+  } = useProfilContext();
+  useProfilContext();
+
   const go = useNavigate();
 
   const handleModalOpen = () => {
@@ -244,6 +259,13 @@ function ProfilPictureCorrection() {
     }
   };
 
+  useEffect(() => {
+    setUnMajor(universalMajor);
+    setFunMajor(functionMajor);
+    console.log(unMajor);
+    console.log(funMajor);
+  }, [universalMajor, functionMajor]);
+
   return (
     <Body>
       <Text>개인정보 수정</Text>
@@ -264,15 +286,27 @@ function ProfilPictureCorrection() {
         <ProfilInformationWrapper>
           <ImformationWrapper>
             <ProfilInformation>이름:</ProfilInformation>
-            <InputBox placeholder="이름을 입력하세요" />
+            <InputBox
+              placeholder="이름을 입력하세요"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </ImformationWrapper>
           <ImformationWrapper>
             <ProfilInformation>Github:</ProfilInformation>
-            <InputBox placeholder="Github 링크를 입력하세요" />
+            <InputBox
+              placeholder="Github 링크를 입력하세요"
+              value={github}
+              onChange={(e) => setGithub(e.target.value)}
+            />
           </ImformationWrapper>
           <ImformationWrapper>
             <ProfilInformation>E-mail:</ProfilInformation>
-            <InputBox placeholder="이메일 주소를 입력하세요" />
+            <InputBox
+              placeholder="이메일 주소를 입력하세요"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </ImformationWrapper>
           <ImformationWrapper>
             <ProfilInformation>전공:</ProfilInformation>
