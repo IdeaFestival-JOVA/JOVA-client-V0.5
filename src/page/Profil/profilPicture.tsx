@@ -103,25 +103,24 @@ function ProfilPicture() {
             <UserImformation>
               {unMajor.map((x) => {
                 const majors = [
-                  "FrontEnd",
                   "BackEnd",
+                  "FrontEnd",
+                  "AI",
                   "DevOps",
                   "UI/UX design",
-                  "AI",
                   "AOS",
                   "IOS",
-                  "DB",
                 ];
                 return <MajorBox key={`uni-${x}`}>{majors[x]}</MajorBox>;
               })}
               {funMajor.map((x) => {
                 const majors = [
-                  "게임개발",
-                  "모바일로보틱스",
-                  "클라우드컴퓨팅",
-                  "플러터",
-                  "사이버보안",
                   "IT네트워크",
+                  "사이버보안",
+                  "클라우드컴퓨팅",
+                  "모바일로보틱스",
+                  "플러터",
+                  "게임개발",
                 ];
                 return <MajorBox key={`func-${x}`}>{majors[x]}</MajorBox>;
               })}
