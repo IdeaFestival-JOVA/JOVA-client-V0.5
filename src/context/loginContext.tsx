@@ -10,7 +10,7 @@ interface UserStateInfo {
 const UserState = createContext<UserStateInfo | undefined>(undefined);
 
 // Provider 컴포넌트
-export const ProfilProvider = ({ children }: { children: ReactNode }) => {
+export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [login, setLogin] = useState<boolean>(false);
 
   return (
