@@ -5,19 +5,19 @@ import Header from "../../components/Header";
 
 function DetailJob() {
   const location = useLocation();
-  const { userName, title, date, content } = location.state || {}; // 전달된 데이터 수신
+  const { Author, Title, EndsAt, Content } = location.state || {}; // 전달된 데이터 수신
 
   return (
     <div>
       <Helmet>
-        <title>JOVA | {title}</title>
+        <title>JOVA | {Title}</title>
       </Helmet>
       <Header />
       <InfoBoxJob
-        Name={userName}
-        Title={title}
-        TimeDate={date}
-        Contents={content}
+        Name={Author}
+        Title={Title}
+        TimeDate={EndsAt}
+        Contents={Content}
       />
     </div>
   );
