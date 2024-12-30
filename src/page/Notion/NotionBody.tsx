@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import MiniNotion from "./MiniNotion";
 import { Link } from "react-router-dom";
+import useGetAricleList from "../../custom/useGetArticlelist";
 
 const Text = styled.h1`
   font-family: "Pretendard-Regular", sans-serif;
@@ -113,6 +114,10 @@ type NotionProps = {
 function NotionBody() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  const { data, loading, error } = useGetAricleList();
+
+  console.log(data);
 
   const TempArray: NotionProps[] = [
     {
@@ -381,9 +386,6 @@ function NotionBody() {
     },
   ];
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const displayedData = TempArray.slice(startIndex, startIndex + itemsPerPage);
-
   const totalPages = Math.ceil(TempArray.length / itemsPerPage);
 
   const handlePageChange = (page: number) => {
@@ -404,16 +406,17 @@ function NotionBody() {
         </TableRow>
       </Table>
       <MiniNotionWrapper>
-        {displayedData.map((notion, index) => (
-          <MiniNotion
-            key={startIndex + index}
-            Num={startIndex + index + 1}
-            User={notion.User}
-            Title={notion.Title}
-            Time={notion.Time}
-            Contents={notion.Contents}
-          />
-        ))}
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : data?.length ? (
+          data
+            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+            .map((item, index) => <MiniNotion key={index + 1} {...item} />)
+        ) : (
+          <p>No items available</p>
+        )}
       </MiniNotionWrapper>
       <PaginationWrapper>
         {Array.from({ length: totalPages }, (_, index) => {
