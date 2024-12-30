@@ -78,7 +78,7 @@ function SignUp() {
   const [number, setNumber] = useState<number>(0);
   const [password, setPassword] = useState<string>("");
 
-  const { postSignUp, data } = usePostSIgnUp();
+  const { postSignUp } = usePostSIgnUp();
 
   const go = useNavigate();
 
@@ -93,15 +93,9 @@ function SignUp() {
       password,
     };
 
-    try {
-      await postSignUp(date);
-      if (data) {
-        console.log("회원가입 성공");
-        go("/profil");
-      }
-    } catch (error) {
-      console.error("회원가입 실패:", error);
-    }
+    await postSignUp(date);
+    console.log("회원가입 성공");
+    go("/login");
   };
 
   return (
