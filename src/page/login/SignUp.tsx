@@ -78,22 +78,30 @@ function SignUp() {
   const [number, setNumber] = useState<number>(0);
   const [password, setPassword] = useState<string>("");
 
-  const { postSignUp } = usePostSIgnUp();
+  const { postSignUp, data } = usePostSIgnUp();
 
   const go = useNavigate();
 
-  const handleClick = () => {
-    const data = {
-      email: email,
-      name: name,
-      classNum: classNum,
-      grade: grade,
-      number: number,
+  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    const date = {
+      email,
+      name,
+      classNum,
+      grade,
+      number,
+      password,
     };
 
-    postSignUp(data);
-
-    go("/profil");
+    try {
+      await postSignUp(date);
+      if (data) {
+        console.log("회원가입 성공");
+        go("/profil");
+      }
+    } catch (error) {
+      console.error("회원가입 실패:", error);
+    }
   };
 
   return (
@@ -163,8 +171,8 @@ function SignUp() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </InputContainer>
-          <SignUpButton onClick={handleClick}>회원가입</SignUpButton>
         </Form>
+        <SignUpButton onClick={handleClick}>회원가입</SignUpButton>
       </SignUpContainer>
     </>
   );
