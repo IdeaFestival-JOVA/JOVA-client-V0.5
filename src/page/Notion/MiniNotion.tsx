@@ -9,7 +9,7 @@ type NotionProps = {
   createdAt: string;
   endsAt: string;
   author: string;
-  Num?: number;
+  Num: number;
 };
 
 const Table = styled.div`
@@ -52,6 +52,7 @@ function MiniNotion({
   const [CreatedAt, setCreatedAt] = useState("");
   const [EndsAt, setEndsAt] = useState("");
   const [Author, setAuthor] = useState("");
+  const [number, setNumber] = useState<number>(0);
 
   const go = useNavigate();
 
@@ -62,7 +63,8 @@ function MiniNotion({
     setCreatedAt(createdAt);
     setEndsAt(endsAt);
     setAuthor(author);
-  }, [title, content, category, createdAt, endsAt, author]);
+    setNumber(Num);
+  }, [title, content, category, createdAt, endsAt, author, Num]);
 
   const handleClick = () => {
     go("/notion/detail", { state: { Author, Title, EndsAt, Content } });
@@ -72,7 +74,7 @@ function MiniNotion({
   return (
     <Table>
       <TableRow onClick={handleClick}>
-        <TableCell flex={0.5}>{Num}</TableCell>
+        <TableCell flex={0.5}>{number}</TableCell>
         <TableCell flex={1}>{Author}</TableCell>
         <TableCell flex={2}>{Title}</TableCell>
         <TableCell flex={1}>{CreatedAt}</TableCell>

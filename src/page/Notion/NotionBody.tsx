@@ -109,6 +109,9 @@ function NotionBody() {
   const itemsPerPage = 10;
 
   const { data, loading, error } = useGetNotionList();
+
+  console.log(data);
+
   /*
   const TempArray: NotionProps[] = [
     {
@@ -404,7 +407,9 @@ function NotionBody() {
         ) : data?.length ? (
           data
             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-            .map((item, index) => <MiniNotion key={index + 1} {...item} />)
+            .map((item, index) => (
+              <MiniNotion key={index + 1} Num={index + 1} {...item} />
+            ))
         ) : (
           <p>No items available</p>
         )}
