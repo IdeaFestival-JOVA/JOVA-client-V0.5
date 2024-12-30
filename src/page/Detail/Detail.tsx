@@ -10,7 +10,7 @@ function Detail() {
   return (
     <div>
       <Helmet>
-        <title>JOVA |</title>
+        <title>JOVA | {Title}</title>
       </Helmet>
       <Header />
       <InfoBox
