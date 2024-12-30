@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import MiniNotion from "./MiniNotion";
 import { Link } from "react-router-dom";
-import useGetAricleList from "../../custom/useGetArticlelist";
+import useGetNotionList from "../../custom/useGetBNotionList";
 
 const Text = styled.h1`
   font-family: "Pretendard-Regular", sans-serif;
@@ -108,7 +108,7 @@ function NotionBody() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const { data, loading, error } = useGetAricleList();
+  const { data, loading, error } = useGetNotionList();
   /*
   const TempArray: NotionProps[] = [
     {
