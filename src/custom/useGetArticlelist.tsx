@@ -27,7 +27,7 @@ const useGetAricleList = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer your_access_token",
+            Authorization: "aGJojaL6CSEzapYxaK24DLAm+Bp1mUaQ8VvHxyOufDU=",
           },
         });
         if (!response.ok) {
