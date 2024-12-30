@@ -71,6 +71,33 @@ const CorrectionButton = styled.div`
   margin-left: 1000px;
 `;
 
+const Menu = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 396px;
+  height: 845px;
+  border-right: 1px solid black;
+
+  display: flex;
+  justify-content: center;
+`;
+
+const MenuBox = styled.div`
+  width: 200px;
+  height: 396px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Blank = styled.div`
+  height: 40px;
+`;
+
+const SmallBlank = styled.div`
+  height: 5px;
+`;
+
 function ProfilPicture() {
   const { name, github, email, unMajor, funMajor } = useProfilContext();
 
@@ -82,7 +109,7 @@ function ProfilPicture() {
 
   return (
     <>
-      <Text>마이 페이지</Text>
+      <Text>회원 정보</Text>
       <ProfilWrapper>
         <ProfilImage src={baseImage} />
         <ProfilInformationWrapper>
@@ -132,6 +159,24 @@ function ProfilPicture() {
         <PenIcon />
         수정하기
       </CorrectionButton>
+      <Menu>
+        <MenuBox>
+          <h1>마이페이지</h1>
+          <Blank />
+          <Blank />
+          <h2>나의 정보</h2>
+          <SmallBlank />
+          <SmallBlank />
+          <p>회원 정보</p>
+          <Blank />
+          <h2>채용</h2>
+          <SmallBlank />
+          <SmallBlank />
+          <p>지원한 공고</p>
+          <SmallBlank />
+          <p>게시한 공고</p>
+        </MenuBox>
+      </Menu>
     </>
   );
 }
