@@ -104,21 +104,12 @@ const TableCell = styled.div<{ flex?: number }>`
   text-overflow: ellipsis;
 `;
 
-type NotionProps = {
-  User: string;
-  Title: string;
-  Time: string;
-  Contents: string;
-};
-
 function NotionBody() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
   const { data, loading, error } = useGetAricleList();
-
-  console.log(data);
-
+  /*
   const TempArray: NotionProps[] = [
     {
       User: "1412 이상혁",
@@ -384,9 +375,9 @@ function NotionBody() {
       Time: "adfwaoirhvbn",
       Contents: "### 메타데이터\n**임의로 설정한 메타데이터**입니다.",
     },
-  ];
+  ];*/
 
-  const totalPages = Math.ceil(TempArray.length / itemsPerPage);
+  const totalPages = Math.ceil(data != null ? data.length / itemsPerPage : 0);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -396,7 +387,7 @@ function NotionBody() {
     <Wrapper>
       <Text>공지사항</Text>
       <DividSpace />
-      <TextP marginLeft={0}>전체 {TempArray.length}건</TextP>
+      <TextP marginLeft={0}>전체 {data != null ? data.length : 0}건</TextP>
       <Table>
         <TableRow>
           <TableCell flex={0.5}>No</TableCell>
