@@ -3,7 +3,6 @@ import styled from "styled-components";
 import MiniJob from "./MiniJob";
 import { useNavigate } from "react-router-dom";
 import useGetAricleList from "../../custom/useGetArticlelist";
-import { useUserContext } from "../../context/loginContext";
 
 const Text = styled.h1`
   font-family: "Pretendard-Regular", sans-serif;
@@ -100,26 +99,24 @@ const TextP = styled.p`
   margin: 0;
 `;
 
-function JobBody() {
+const JobBody = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
   const { data, loading, error } = useGetAricleList();
 
-  const total = data != null ? data.length : null;
+  const total = data?.length ?? 0;
 
   const go = useNavigate();
 
-  const login = useUserContext();
-
   const handleClick = () => {
-    if (login.login === true) {
-      go("/jobnotion");
-    } else {
-      alert("로그인하고 진행해보세요");
-      go("/login");
-    }
+    go("/jobnotion");
   };
+
+  // 역순으로 정렬된 데이터를 기준으로 현재 페이지에 맞는 항목 가져오기
+  const sortedData = data?.slice().reverse(); // 원본 데이터 유지
+  const startIdx = (currentPage - 1) * itemsPerPage;
+  const currentPageData = sortedData?.slice(startIdx, startIdx + itemsPerPage);
 
   return (
     <Wrapper>
@@ -139,13 +136,14 @@ function JobBody() {
           <p>Loading...</p>
         ) : error ? (
           <p>{error}</p>
-        ) : data?.length ? (
-          data
-            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-            .reverse()
-            .map((item, index) => (
-              <MiniJob key={index + 1} Num={index + 1} {...item} />
-            ))
+        ) : currentPageData?.length ? (
+          currentPageData.map((item, index) => (
+            <MiniJob
+              key={total - startIdx - index}
+              Num={total - startIdx - index}
+              {...item}
+            />
+          ))
         ) : (
           <p>No items available</p>
         )}
@@ -170,6 +168,6 @@ function JobBody() {
       </NotificationButtonBox>
     </Wrapper>
   );
-}
+};
 
 export default JobBody;
