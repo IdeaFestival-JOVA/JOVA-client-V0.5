@@ -12,3 +12,7 @@ React.js + TypeScript + Vite
 4. react-markdown
 5. rehype-raw
 6. axios
+
+## 프로젝트 개발
+
+완료
